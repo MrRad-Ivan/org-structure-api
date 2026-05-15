@@ -90,41 +90,42 @@ Negative тесты (должны возвращать ошибку)
 - Все сообщения об ошибках возвращаются на русском языке
 - Чистая архитектура (handlers → repository → models)
 
-org-structure-api/
-cmd/
- app/
-   main.go                  # Точка входа приложения
+      org-structure-api/
+         cmd/
+            app/
+               main.go                  # Точка входа приложения
    
- internal/                        # Основной код проекта
-  config/
-    config.go                # Конфигурация (.env)
+         internal/                        # Основной код проекта
+            config/
+               config.go                # Конфигурация (.env)
 
- database/
-   db.go                    # Подключение к PostgreSQL
-   migration.go             # Запуск миграций Goose
+            database/
+               db.go                    # Подключение к PostgreSQL
+               migration.go             # Запуск миграций Goose
+      
+            handlers/
+               router.go                # Настройка всех маршрутов (chi)
+               department_handler.go    # Все HTTP-обработчики
 
- handlers/
-   router.go                # Настройка всех маршрутов (chi)
-   department_handler.go    # Все HTTP-обработчики
+            models/
+               department.go            # Модель Подразделения
+               employee.go              # Модель Сотрудника
 
-  models/
-   department.go            # Модель Подразделения
-   employee.go              # Модель Сотрудника
-   
-  repository/
-   department_repository.go # Логика работы с БД по подразделениям
-   employee_repository.go   # Логика работы с БД по сотрудникам
-  migrations/                      # Миграции базы данных (Goose)
-   00001_create_departments.sql
-   00002_create_employees.sql
+           repository/
+               department_repository.go # Логика работы с БД по подразделениям
+               employee_repository.go   # Логика работы с БД по сотрудникам
+         
+           migrations/                      # Миграции базы данных (Goose)
+               00001_create_departments.sql
+               00002_create_employees.sql
 
-.env                             # Настройки окружения (локальные)
-.env.example                     # Пример настроек для GitHub
-docker-compose.yml               # Запуск PostgreSQL + приложения
-Dockerfile                       # Сборка Docker-образа
-go.mod
-go.sum
-README.md
+      .env                             # Настройки окружения (локальные)
+      .env.example                     # Пример настроек для GitHub
+      docker-compose.yml               # Запуск PostgreSQL + приложения
+      Dockerfile                       # Сборка Docker-образа
+      go.mod
+      go.sum
+      README.md
 
 Запуск тестов
 
