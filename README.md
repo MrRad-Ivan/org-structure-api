@@ -91,42 +91,40 @@ Negative тесты (должны возвращать ошибку)
 - Чистая архитектура (handlers → repository → models)
 
 org-structure-api/
-├── cmd/
-│   └── app/
-│       └── main.go                  # Точка входа приложения
-│
-├── internal/                        # Основной код проекта
-│   ├── config/
-│   │   └── config.go                # Конфигурация (.env)
-│   │
-│   ├── database/
-│   │   ├── db.go                    # Подключение к PostgreSQL
-│   │   └── migration.go             # Запуск миграций Goose
-│   │
-│   ├── handlers/
-│   │   ├── router.go                # Настройка всех маршрутов (chi)
-│   │   ├── department_handler.go    # Все HTTP-обработчики
-│   │   └── department_handler_test.go   # Тесты 
-│   │
-│   ├── models/
-│   │   ├── department.go            # Модель Подразделения
-│   │   └── employee.go              # Модель Сотрудника
-│   │
-│   └── repository/
-│       ├── department_repository.go # Логика работы с БД по подразделениям
-│       └── employee_repository.go   # Логика работы с БД по сотрудникам
-│
-├── migrations/                      # Миграции базы данных (Goose)
-│   ├── 00001_create_departments.sql
-│   └── 00002_create_employees.sql
-│
-├── .env                             # Настройки окружения (локальные)
-├── .env.example                     # Пример настроек для GitHub
-├── docker-compose.yml               # Запуск PostgreSQL + приложения
-├── Dockerfile                       # Сборка Docker-образа
-├── go.mod
-├── go.sum
-└── README.md
+cmd/
+ app/
+   main.go                  # Точка входа приложения
+   
+ internal/                        # Основной код проекта
+  config/
+    config.go                # Конфигурация (.env)
+
+ database/
+   db.go                    # Подключение к PostgreSQL
+   migration.go             # Запуск миграций Goose
+
+ handlers/
+   router.go                # Настройка всех маршрутов (chi)
+   department_handler.go    # Все HTTP-обработчики
+
+  models/
+   department.go            # Модель Подразделения
+   employee.go              # Модель Сотрудника
+   
+  repository/
+   department_repository.go # Логика работы с БД по подразделениям
+   employee_repository.go   # Логика работы с БД по сотрудникам
+  migrations/                      # Миграции базы данных (Goose)
+   00001_create_departments.sql
+   00002_create_employees.sql
+
+.env                             # Настройки окружения (локальные)
+.env.example                     # Пример настроек для GitHub
+docker-compose.yml               # Запуск PostgreSQL + приложения
+Dockerfile                       # Сборка Docker-образа
+go.mod
+go.sum
+README.md
 
 Запуск тестов
 
